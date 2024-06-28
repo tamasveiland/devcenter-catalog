@@ -360,9 +360,19 @@ else {
         Remove-Item -Path $tempOutFile -Force
         Write-Host "Results:"
         Write-Host $unitResults
+        Write-Host "  "
+        Write-Host "  "
+        Write-Host "Checking exit code..."
 
         if ($installExitCode -ne 0) {
             Write-Error "Failed to install package. Exit code: $installExitCode"
+
+            # If there are any errors in the package installation, we need to exit with a non-zero code
+            $unitResultsObject = $unitResults | ConvertFrom-Json
+            if ($unitResultsObject.Status -ne "Ok") {
+                Write-Error "There were errors installing the package"
+            }
+
             exit 1
         }
 
