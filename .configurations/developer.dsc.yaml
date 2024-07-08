@@ -38,3 +38,14 @@ properties:
       settings:
         id: Microsoft.SqlServerManagementStudio
         ensure: Present
+    ### Install Total Commander
+    ### -------------------------------------
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: totalcommander
+      directives:
+        description: Install Total Commander
+        allowPrerelease: true
+      settings:
+        id: Ghisler.TotalCommander
+        ensure: Present
+    
