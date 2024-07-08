@@ -48,4 +48,14 @@ properties:
       settings:
         id: Ghisler.TotalCommander
         ensure: Present
+    ### Install Notepad++
+    ### -------------------------------------
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: notepadplusplus
+      directives:
+        description: Install Notepad++
+        allowPrerelease: true
+      settings:
+        id: Notepad++.Notepad++
+        ensure: Present
     
