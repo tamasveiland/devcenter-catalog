@@ -1,0 +1,19 @@
+$schema: "1.0"
+name: "devbox-customization"
+
+tasks:
+  ### Install Visual Studio Code
+  ### -------------------------------------
+  - name: choco
+    parameters:
+      package: vscode
+
+  ### Clone the eShop repository into the Workspaces directory
+  ### -------------------------------------
+  - name: git-clone
+    description: Clone this repository into z:\Workspaces
+    parameters:
+      repositoryUrl: https://github.com/tamasveiland/devcenter-catalog.git
+      directory: c:\workspaces
+
+
