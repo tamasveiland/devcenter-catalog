@@ -38,6 +38,24 @@ properties:
       settings:
         id: Microsoft.SqlServerManagementStudio
         ensure: Present
+    ### Install IIS
+    ### -------------------------------------
+    # - resource: PSDscResources/Script
+    #   id: iis
+    #   directives:
+    #     description: Install IIS
+    #   settings:
+    #     SetScript: |
+    #       Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+    #     GetScript: return $false
+    #     TestScript: return $false
+    - resource: PSDscResources/WindowsFeature
+      id: iis
+      directives:
+        description: Install IIS
+      settings:
+        Name: Web-Server
+        Ensure: Present
     ### Install Total Commander
     ### -------------------------------------
     - resource: Microsoft.WinGet.DSC/WinGetPackage
@@ -68,25 +86,6 @@ properties:
       settings:
         id: Postman.Postman
         ensure: Present
-    ### Install Microsoft Dev Home
-    ### -------------------------------------
-    # - resource: Microsoft.WinGet.DSC/WinGetPackage
-    #   id: devhome
-    #   directives:
-    #     description: Install Microsoft Dev Home
-    #     allowPrerelease: true
-    #   settings:
-    #     id: Microsoft.DevHome
-    #     ensure: Present
-    - resource: PSDscResources/Script
-      id: devhome
-      directives:
-        description: Install Microsoft Dev Home
-      settings:
-        SetScript: |
-          winget install Microsoft.DevHome -e
-        GetScript: return $false
-        TestScript: return $false
     ### Install SQL Server 2022
     ### -------------------------------------
     - resource: Microsoft.WinGet.DSC/WinGetPackage
