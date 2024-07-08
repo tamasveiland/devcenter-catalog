@@ -86,9 +86,7 @@ properties:
         SetScript: |
           winget install Microsoft.DevHome -e
         GetScript: return $false
-        TestScript: |
-          winget list --id Microsoft.DevHome | Out-Null
-          return $?
+        TestScript: return $false
     ### Install SQL Server 2022
     ### -------------------------------------
     - resource: Microsoft.WinGet.DSC/WinGetPackage
